@@ -1,5 +1,5 @@
 from django.db import models
-
+from users.models import CustomUser
 # Create your models here.
 class apartamento(models.Model):
     name = models.CharField(max_length=200)
@@ -12,6 +12,7 @@ class apartamento(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
     camas = models.IntegerField()
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
